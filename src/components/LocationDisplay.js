@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 export default function LocationDisplay() {
   return (
     <div>
-        <h1>
+        <h1 data-testid="location-display">
             {
                 useLocation().pathname
             }
