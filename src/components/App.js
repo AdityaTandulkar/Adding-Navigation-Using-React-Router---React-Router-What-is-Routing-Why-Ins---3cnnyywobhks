@@ -7,6 +7,9 @@ import Error from "./Error";
 import LocationDisplay from "./LocationDisplay";
 
 class App extends Component {
+    constructor(){
+        super();
+    }
     render() {
 
         return(
