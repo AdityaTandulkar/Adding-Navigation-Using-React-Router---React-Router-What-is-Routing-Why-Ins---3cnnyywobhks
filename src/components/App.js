@@ -1,38 +1,50 @@
-import React, {Component} from "react";
-import {BrowserRouter, Route, Switch, NavLink} from 'react-router-dom';
+import React, {Component, useState, } from "react";
 import '../styles/App.css';
+
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import NavBar from "./NavBar";
+
 import Home from "./Home";
 import About from "./About";
-import Error from "./Error";
-import LocationDisplay from "./LocationDisplay";
+// import LocationDisplay from "./LocationDisplay";
+import NoMatch from "./NoMatch";
+import { useLocation } from "react-router-dom";
+
+export const LocationDisplay =()=>{
+    const location = useLocation();
+
+    return(
+        <h4 data-testid="location-display">{location.pathname}</h4>
+    )
+}
+
 
 class App extends Component {
+
     constructor(){
         super();
-    }
-    render() {
 
+    }
+
+    render() {
         return(
             <BrowserRouter>
                 <div id="main">
-                {/* Do not remove the main div */}
-                    <nav>
-                        <NavLink to='/'>Home</NavLink>
-                        <NavLink to='/about'>About</NavLink>
-                    </nav>
+                    <NavBar/>
 
                     <Switch>
-                        <Route exact path='/' component={Home}/>
+                        <Route exact path="/" component={Home}/>
                         <Route exact path='/about' component={About}/>
-                        <Route path='*' component={Error}/>
+                        <Route path="*" component={NoMatch}/>
                     </Switch>
 
-                    <LocationDisplay />
+                    <LocationDisplay/>
                 </div>
-            </BrowserRouter>
+             </BrowserRouter>
+
         )
     }
 }
 
-
 export default App;
+
